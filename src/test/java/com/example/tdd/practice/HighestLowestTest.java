@@ -13,4 +13,18 @@ public class HighestLowestTest {
         String result = highestLowest.minAndMaxOfArray("1");
         assertThat(result,is("1 1"));
     }
+
+    @Test
+    public void arrayHasTwoValuesTest() {
+        HighestLowest highestLowest = new HighestLowest();
+        String result = highestLowest.minAndMaxOfArray("1 3");
+        assertThat(result,is("3 1"));
+    }
+
+    @Test
+    public void arrayHasTwoEqualsValuesTest() {
+        HighestLowest highestLowest = new HighestLowest();
+        String result = highestLowest.minAndMaxOfArray("4 4");
+        assertThat(result,is("4 4"));
+    }
 }
