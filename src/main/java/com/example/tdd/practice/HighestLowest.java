@@ -1,32 +1,34 @@
 package com.example.tdd.practice;
 
 import java.util.*;
+import java.util.stream.IntStream;
 
 public class HighestLowest {
+
     public String minAndMaxOfArray(String s) {
         String result="";
 
         int[] integerArray = Arrays.stream(s.split(" ")).mapToInt(Integer::parseInt).toArray();
+        IntSummaryStatistics statisticsIntArray = IntStream.of(integerArray).parallel().summaryStatistics();
 
-        if (integerArray.length == 1){
-            result = integerArray[0] + " " + integerArray[0];
-        }
+        int min = findLowInArray(statisticsIntArray);
+        int max = findMaxInArray(statisticsIntArray);
+        result = composeResult(max,min);
+        return result;
+    }
 
-        if (integerArray.length == 2){
-            int min = Integer.MAX_VALUE;
-            int max = Integer.MIN_VALUE;
+    private int findLowInArray(IntSummaryStatistics intSummaryStatistics){
+        int min = intSummaryStatistics.getMin();
+        return min;
+    }
 
-            for (int i = 0; i < integerArray.length;i++){
-                int valueFromArray = integerArray[i];
-                if ( valueFromArray < min){
-                    min = valueFromArray;
-                }
-                if ( valueFromArray > max){
-                    max = valueFromArray;
-                }
-            }
-            result = max + " " + min;
-        }
+    private int findMaxInArray(IntSummaryStatistics intSummaryStatistics){
+        int max = intSummaryStatistics.getMax();
+        return max;
+    }
+
+    private String composeResult(int max, int min){
+        String result = max + " " + min;
         return result;
     }
 }

@@ -27,4 +27,11 @@ public class HighestLowestTest {
         String result = highestLowest.minAndMaxOfArray("4 4");
         assertThat(result,is("4 4"));
     }
+
+    @Test
+    public void arrayHasThreeEqualsValuesTest() {
+        HighestLowest highestLowest = new HighestLowest();
+        String result = highestLowest.minAndMaxOfArray("4 -10 23");
+        assertThat(result,is("23 -10"));
+    }
 }
